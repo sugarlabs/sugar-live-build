@@ -1,0 +1,80 @@
+#!/bin/bash
+
+set -e
+
+# get build dependencies, configure, build, and install sugar from source
+# side effect: debian package version mismatch
+for x in sugar{-datastore,-artwork,-toolkit,-toolkit-gtk3,}; do
+    if [ -e /usr/src/$x ]; then
+        cd /usr/src/$x
+        (
+        apt build-dep -y $x
+        ./autogen.sh
+        ./configure --prefix=/usr
+        make
+        make install && echo ok
+        ) > /usr/src/install-$x.log 2>&1
+    fi
+done
+
+# replace all installed activities with sugar activities from source
+# side effect: debian package version mismatch
+(
+    cd /usr/src/sugar-activities
+    for ACTIVITY in *.activity; do
+	echo $ACTIVITY
+        rm -rf /usr/share/sugar/activities/$ACTIVITY
+        (cd /usr/share/sugar/activities &&
+		ln -s /usr/src/sugar-activities/$ACTIVITY) && echo ok
+    done
+) > /usr/src/install-sugar-activities.log 2>&1
+
+# repair the debian package versions
+# warning: very dangerous, may irreversibly corrupt a running system
+# warning: no locking
+function forge {
+    python -c "
+import sys, fileinput
+
+act = False
+for line in fileinput.input('status'):
+    if act and line.startswith('Version: '):
+        sys.stdout.write('Version: %s\n' % sys.argv[2])
+        act = False
+        continue
+    if line == 'Package: %s\n' % sys.argv[1]:
+        act = True
+    sys.stdout.write(line)
+" $1 $2 > status.new && mv status.new status
+}
+
+cd /var/lib/dpkg
+forge  gir1.2-sugarext-1.0             0.111-0~quozl0
+forge  gtk2-engines-sugar              0.111-0~quozl0
+forge  libdata-optlist-perl            0.111-0~quozl0
+forge  libsugarext-data                0.111-0~quozl0
+forge  libsugarext0                    0.111-0~quozl0
+forge  python-carquinyol               0.111-0~quozl0
+forge  python-jarabe                   0.111-0~quozl0
+forge  python-sugar-toolkit            0.111-0~quozl0
+forge  python-sugar3                   0.111-0~quozl0
+forge  sucrose                         0.111-0~quozl0
+forge  sugar-icon-theme                0.111-0~quozl0
+forge  sugar-session                   0.111-0~quozl0
+forge  sugar-themes                    0.111-0~quozl0
+
+forge  sugar-browse-activity           201.2-0~quozl0
+forge  sugar-calculate-activity        44-0~quozl0
+forge  sugar-chat-activity             84-0~quozl0
+forge  sugar-imageviewer-activity      63-0~quozl0
+forge  sugar-jukebox-activity          33-0~quozl0
+forge  sugar-log-activity              38-0~quozl0
+forge  sugar-pippy-activity            71.1-0~quozl0
+forge  sugar-read-activity             119-0~quozl0
+forge  sugar-terminal-activity         45.1-0~quozl0
+forge  sugar-write-activity            98.2-0~quozl0
+
+# repair the debian package dependencies
+sed -i 's/gir1.2-sugarext-1.0 (<< 0.110.0-4.1~), //g' status
+sed -i 's/libsugarext-data (= 0.110.0-4)/libsugarext-data (= 0.111-0~quozl0)/g' status
+sed -i 's/libsugarext0 (= 0.110.0-4)/libsugarext0 (= 0.111-0~quozl0)/g' status

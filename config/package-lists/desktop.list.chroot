@@ -1,0 +1,31 @@
+sucrose
+xserver-xorg
+lightdm
+
+# when --apt-recommends false is used
+
+# fixes no login stack trace during startup
+telepathy-mission-control-5
+
+# fixes repeated colour and age prompts
+openssh-client
+
+# fixes link-local collaboration and minor stack trace during startup
+telepathy-salut
+
+# fixes jabber collaboration and minor stack trace during startup
+telepathy-gabble
+
+# fixes frame battery icon on laptops
+upower
+
+# fixes speech synthesis
+pulseaudio
+gstreamer1.0-pulseaudio
+gstreamer1.0-espeak
+gstreamer1.0-plugins-good
+
+# fixes bundle install via browse
+unzip
+
+
