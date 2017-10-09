@@ -49,19 +49,19 @@ for line in fileinput.input('status'):
 }
 
 cd /var/lib/dpkg
-forge  gir1.2-sugarext-1.0             0.111-0~quozl0
-forge  gtk2-engines-sugar              0.111-0~quozl0
-forge  libdata-optlist-perl            0.111-0~quozl0
-forge  libsugarext-data                0.111-0~quozl0
-forge  libsugarext0                    0.111-0~quozl0
-forge  python-carquinyol               0.111-0~quozl0
-forge  python-jarabe                   0.111-0~quozl0
-forge  python-sugar-toolkit            0.111-0~quozl0
-forge  python-sugar3                   0.111-0~quozl0
-forge  sucrose                         0.111-0~quozl0
-forge  sugar-icon-theme                0.111-0~quozl0
-forge  sugar-session                   0.111-0~quozl0
-forge  sugar-themes                    0.111-0~quozl0
+forge  gir1.2-sugarext-1.0             0.112-0~quozl0
+forge  gtk2-engines-sugar              0.112-0~quozl0
+forge  libdata-optlist-perl            0.112-0~quozl0
+forge  libsugarext-data                0.112-0~quozl0
+forge  libsugarext0                    0.112-0~quozl0
+forge  python-carquinyol               0.112-0~quozl0
+forge  python-jarabe                   0.112-0~quozl0
+forge  python-sugar-toolkit            0.112-0~quozl0
+forge  python-sugar3                   0.112-0~quozl0
+forge  sucrose                         0.112-0~quozl0
+forge  sugar-icon-theme                0.112-0~quozl0
+forge  sugar-session                   0.112-0~quozl0
+forge  sugar-themes                    0.112-0~quozl0
 
 forge  sugar-browse-activity           201.2-0~quozl0
 forge  sugar-calculate-activity        44-0~quozl0
@@ -72,9 +72,9 @@ forge  sugar-log-activity              38-0~quozl0
 forge  sugar-pippy-activity            71.1-0~quozl0
 forge  sugar-read-activity             119-0~quozl0
 forge  sugar-terminal-activity         45.1-0~quozl0
-forge  sugar-write-activity            98.2-0~quozl0
+forge  sugar-write-activity            98.3-0~quozl0
 
 # repair the debian package dependencies
 sed -i 's/gir1.2-sugarext-1.0 (<< 0.110.0-4.1~), //g' status
-sed -i 's/libsugarext-data (= 0.110.0-4)/libsugarext-data (= 0.111-0~quozl0)/g' status
-sed -i 's/libsugarext0 (= 0.110.0-4)/libsugarext0 (= 0.111-0~quozl0)/g' status
+sed -i 's/libsugarext-data (= 0.110.0-4)/libsugarext-data (= 0.112-0~quozl0)/g' status
+sed -i 's/libsugarext0 (= 0.110.0-4)/libsugarext0 (= 0.112-0~quozl0)/g' status
