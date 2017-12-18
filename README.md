@@ -21,6 +21,13 @@ If you're looking for a pre-built ISO file see [Downloads](http://people.sugarla
 
 This will take some time to process, and at the end you will have a file ending with `.hybrid.iso` which is your iso bootable file.
 
+## How to Add Activities
+- open the `build` script in your prefered text editor.
+
+- Add the following line to `build` with the other lines cloning the activities and replace the git URL given below with the URL to the activity repository and change `ActivityName` to the name of the activity.
+
+    `clone https://github.com/username/link-to-repository.git     ActivityName.activity`
+
 ## Debian Live Build
 
 Debian Live Build has [documentation](https://debian-live.alioth.debian.org/live-manual/stable/manual/html/live-manual.en.html#107) for more details.
