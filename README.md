@@ -1,33 +1,49 @@
 # Sugar Live Build
 ## Introduction
 
-Welcome to Sugar Live Build! This makes a complete bootable image containing Sugar, the toolkits, and the demonstration activities. It:
+Welcome to Sugar Live Build! This makes a complete bootable image
+containing Sugar, the Sugar toolkits, and the demonstration
+activities.
 
-- can be booted from hard drive, flash drive, and optical media, automatically starting Sugar without persistence,
+- It can be booted from hard drive, flash drive, and optical media,
+automatically starting Sugar without persistence;
 
-- can be installed as a virtual machine, with persistence and password protection,
+- It can be installed as a virtual machine, with persistence and
+password protection,
 
-- contains all build dependencies, configured source trees (git clones in /usr/src), and binaries (make install) for Sugar modules and the demonstration activity set.
+- It contains all build dependencies, configured source trees (git
+clones in /usr/src), and binaries (make install) for Sugar modules
+and the demonstration activity set.
 
-If you're looking for a pre-built ISO file see [Downloads](http://people.sugarlabs.org/~quozl/sugar-live-build-20171009/).
+If you're looking for a pre-built ISO file see
+[Downloads](http://people.sugarlabs.org/~quozl/sugar-live-build-20171009/).
 
-## How to Build
+## How to build
 
-- install Debian Stretch,
+1. Install Debian Stretch;
 
-- clone this repository,
+2. Clone this repository;
 
-- run the `build` script.
+3. Run the `build` script.
 
-This will take some time to process, and at the end you will have a file ending with `.hybrid.iso` which is your iso bootable file.
+This will take some time to process; at the end you will have a file
+ending with `.hybrid.iso`, which is your iso-bootable file.
 
-## How to Add Activities
-- open the `build` script in your prefered text editor.
+## How to add activities
 
-- Add the following line to `build` with the other lines cloning the activities and replace the git URL given below with the URL to the activity repository and change `ActivityName` to the name of the activity.
+1. Open the `build` script with your prefered text editor.
+
+2. For each activity you want to add to your live image, add the
+following line to to the `build` script in the *clone* section.
+Replace the URL of the git repository with the URL of repository of
+the activity you are adding and replace `ActivityName` with the name
+of the activity you are adding. Be sure to use `.activity` as the
+suffix.
 
     `clone https://github.com/username/link-to-repository.git     ActivityName.activity`
 
 ## Debian Live Build
 
-Debian Live Build has [documentation](https://debian-live.alioth.debian.org/live-manual/stable/manual/html/live-manual.en.html#107) for more details.
+Debian Live Build has
+[documentation](https://debian-live.alioth.debian.org/live-manual/stable/manual/html/live-manual.en.html#107)
+for more details.
