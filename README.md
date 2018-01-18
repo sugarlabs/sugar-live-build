@@ -23,8 +23,14 @@ If you're looking for a pre-built ISO file see
 1. Install Debian Stretch;
 
 2. Clone this repository;
+```bash
+git clone https://github.com/sugarlabs/sugar-live-build.git
+```
 
 3. Run the `build` script.
+```bash
+./build
+```
 
 This will take some time to process; at the end you will have a file
 ending with `.hybrid.iso`, which is your iso-bootable file.
