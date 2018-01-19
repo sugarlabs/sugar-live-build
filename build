@@ -1,4 +1,6 @@
 #!/bin/bash -e
+# Written by James Cameron <quozl@laptop.org>
+# Public Domain
 
 mkdir -p config/includes.chroot/usr/src
 
