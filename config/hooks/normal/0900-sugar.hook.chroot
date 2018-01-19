@@ -1,4 +1,6 @@
 #!/bin/bash
+# Written by James Cameron <quozl@laptop.org>
+# Public Domain
 
 set -e
 
