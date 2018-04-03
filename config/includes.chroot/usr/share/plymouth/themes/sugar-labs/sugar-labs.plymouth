@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Sugar Labs
+Description=by xeon zolt
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/sugar-labs
+ScriptFile=/usr/share/plymouth/themes/sugar-labs/sugar-labs.script
