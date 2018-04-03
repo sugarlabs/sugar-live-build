@@ -6,5 +6,5 @@ git:
 sudo: required
   
 script:
-  - ./build.sh |& tee log.txt
+  - ./build |& tee log.txt
   
