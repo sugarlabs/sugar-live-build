@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+#set sugarlabs theme as default
+plymouth-set-default-theme sugarlabs
+
+#update initramfs
+update-initramfs -u
