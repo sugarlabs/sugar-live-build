@@ -1,8 +1,10 @@
 #!/bin/sh
+# Written by Vipul Gupta (@vipulgupta2048)
+# Public Domain
 
 set -e
 
-#set sugarlabs theme as default
+#set Sugar Labs theme as default
 plymouth-set-default-theme sugarlabs
 
 #update initramfs
