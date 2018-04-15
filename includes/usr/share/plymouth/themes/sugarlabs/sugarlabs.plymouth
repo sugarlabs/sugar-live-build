@@ -1,8 +1,0 @@
-[Plymouth Theme]
-Name=Sugarlabs
-Description=Sugarlabs Plymouth splash created by Vipul Gupta @vipulgupta2048 
-ModuleName=script
-
-[script]
-ImageDir=/usr/share/plymouth/themes/sugarlabs
-ScriptFile=/usr/share/plymouth/themes/sugarlabs/sugarlabs.script
