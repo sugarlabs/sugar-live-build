@@ -1,0 +1,10 @@
+dist: stretch
+language: generic
+git:
+  depth: 1
+
+sudo: required
+  
+script:
+ - ./build |  tee build.log
+	
