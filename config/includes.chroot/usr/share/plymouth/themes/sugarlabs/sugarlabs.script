@@ -1,0 +1,225 @@
+ /**************************************************************************
+ *
+ * Copyright (C) 2011 The Xubuntu Community
+ * Copyright (C) 2009 Canonical Ltd.
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Written by: Mad Nick <dr.madnick@gmail.com>
+ *
+ **************************************************************************/
+
+/*
+ * Related to the screen */
+ 
+screen_width = Window.GetWidth();
+screen_height = Window.GetHeight();
+screen_x = Window.GetX();
+screen_y = Window.GetY();
+
+bpp = Window.GetBitsPerPixel();
+
+if (bpp == 4) {
+
+	logotype_image = Image("logo_16bit.png");
+
+}
+else {
+
+	logotype_image = Image("logo.png");
+	
+}
+
+/************************/
+
+/*
+ * Sprites */
+
+ratio = screen_height / screen_width;
+factor = 0;
+
+background_sprite = Sprite(scaled);
+background_sprite.SetX(screen_x + screen_width / 2 - scaled.GetWidth() / 2);
+background_sprite.SetY(screen_y + screen_height / 2 - scaled.GetHeight() / 2);
+
+logotype_sprite = Sprite(logotype_image);
+
+fsck_progress_meter_sprite = Sprite(fsck_progress_meter_image);
+fsck_progress_fade_sprite = Sprite(fsck_progress_fade_image.Scale(1, fsck_progress_fade_image.GetHeight()));
+
+passw_dialog_input_sprite = Sprite(passw_dialog_input_image);
+passw_lbl_sprite = Sprite();
+
+msg_label_sprite = Sprite();
+
+/**/
+
+/*
+ * Misc */
+
+counter = 0;
+
+fade_pos_x = (screen_width / 2) - (progress_meter_image.GetWidth() / 2);
+fade_dir = 0; /* 0 = right, 1 = left */
+
+fsck_running = 0;
+fsck_dev_array;
+fsck_dev_counter = 0;
+fsck_fade_in_counter = 0;
+fsck_done_fading = 0;
+
+stars_array;
+stars_n = 0;
+
+//full_msg = "";
+msgs_line = [NULL,NULL,NULL,NULL,NULL];
+
+/**/
+
+/*
+ * Debug related */
+ 
+debug = 0;
+debug_sprite = Sprite();
+
+fun debugOutput(str) {
+	
+	/*
+	 * This will print to the top left corner */
+	debug_sprite.SetImage(Image.Text(str));
+	
+}
+
+/**/
+
+/*
+ * Setup the graphics properties */
+logotype_sprite.SetPosition(screen_x + (screen_width / 2) - (logotype_image.GetWidth() / 2), screen_y + (screen_height / 2) - (logotype_image.GetHeight() / 2));
+fsck_progress_meter_sprite.SetPosition(screen_x + (screen_width / 2) - (progress_meter_image.GetWidth() / 2), screen_y + (screen_height / 2) + (logotype_image.GetHeight() / 2) + 25);
+fsck_progress_fade_sprite.SetPosition(screen_x + (screen_width / 2) - (progress_meter_image.GetWidth() / 2), screen_y + (screen_height / 2) + (logotype_image.GetHeight() / 2) + 25);
+fsck_progress_meter_sprite.SetOpacity(0);
+fsck_progress_fade_sprite.SetOpacity(0);
+passw_dialog_input_sprite.SetPosition(screen_x + (screen_width / 2) - (passw_dialog_input_image.GetWidth() / 2), screen_y + (screen_height / 2) + (logotype_image.GetHeight() / 2) + 70);
+passw_dialog_input_sprite.SetOpacity(0);
+passw_lbl_sprite.SetOpacity(0);
+
+spin = 0;
+
+/*
+ * this function only goes up to 100
+ * because thats all thats needed for
+ * the progress meter bar */
+fun atoi(str) {
+   
+    int = -1;
+   
+    for (i = 0; i <= 100; i++) {
+    
+        if (i + "" == str) {
+            
+            int = i;
+            
+            break;
+        
+        }
+    
+    }
+    
+    return int;
+
+}
+
+/*
+ * This handler will/can be invoked
+ * 50 times per second.
+ * 
+ * According to the previous author of the
+ * splash script, without this callback
+ * the screen is not updated correctly */
+spinner_sprite;
+spinner;
+
+fun refreshHandler() {
+	
+	if (spin < 3.14 * 2) {
+	
+		spin = spin + 0.1;
+	
+	}
+	else {
+	
+		spin = 0;
+	
+	}
+	
+	/* if fsck is running or the password is prompted, hide the spinner */
+	if (fsck_running == 1 || passw_dialog_input_sprite.GetOpacity() == 1) {
+	
+		spinner_sprite.SetOpacity(0);
+	
+	} else {
+	
+		spinner = Image("spinner.png");
+		spinner = spinner.Rotate(spin);
+		spinner_sprite = Sprite(spinner);
+		spinner_sprite.SetPosition(screen_x + (screen_width / 2) - (spinner.GetWidth() / 2), screen_y + (screen_height / 2) - (spinner.GetHeight() / 2) + 80);	
+	
+	}
+	
+	if (fade_dir == 0) {
+		
+		counter++;
+		
+		if (counter >= 200) {
+			
+			fade_dir = 1;
+		
+		}
+		
+	}
+	else {
+		
+		counter--;
+		
+		if (counter <= 0) {
+			
+			fade_dir = 0;
+		
+		}
+		
+	}
+	
+	if ((fsck_running == 1) && (fsck_done_fading == 0)) {
+		
+		
+		fsck_progress_meter_sprite.SetOpacity(fsck_fade_in_counter);
+		fsck_progress_fade_sprite.SetOpacity(fsck_fade_in_counter);
+		
+		if (fsck_fade_in_counter < 1) {
+		
+			fsck_fade_in_counter+= 0.025;
+		
+		}
+		else {
+			
+			fsck_done_fading = 1;
+			
+		}
+		
+	}
+	
+}
+
+Plymouth.SetRefreshFunction (refreshHandler);
+

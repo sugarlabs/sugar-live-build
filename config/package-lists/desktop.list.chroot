@@ -28,4 +28,6 @@ gstreamer1.0-plugins-good
 # fixes bundle install via browse
 unzip
 
-
+# Need for Plymouth theme
+plymouth
+plymouth-themes
