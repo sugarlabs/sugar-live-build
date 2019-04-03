@@ -4,6 +4,8 @@
 
 mkdir -p config/includes.chroot/usr/src
 
+# clone the sugar modules
+
 for x in sugar{-datastore,-artwork,-toolkit,-toolkit-gtk3,}; do
     P=config/includes.chroot/usr/src/$x
     if [ ! -e $P ]; then
@@ -20,6 +22,8 @@ function clone {
     fi
 }
 
+# clone demonstration activities, the fructose set
+
 clone https://github.com/sugarlabs/browse-activity.git     Browse.activity
 clone https://github.com/sugarlabs/sugarlabs-calculate.git Calculate.activity
 clone https://github.com/sugarlabs/chat.git                Chat.activity
@@ -32,6 +36,12 @@ clone https://github.com/sugarlabs/terminal-activity       Terminal.activity
 clone https://github.com/sugarlabs/turtleart-activity.git  TurtleBlocks.activity
 clone https://github.com/sugarlabs/write-activity          Write.activity
 
+# clone custom activities
+
+#clone https://github.com/my/repository.git My.activity
+
+# install live-build if not present
 [ ! -e /usr/bin/lb ] && sudo apt install -y live-build
 
+# run live-build
 sudo lb build
