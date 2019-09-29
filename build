@@ -2,14 +2,17 @@
 # Written by James Cameron <quozl@laptop.org>
 # Public Domain
 
+# install git if not present
+[ ! -e /usr/bin/git ] && apt install -y git
+
 mkdir -p config/includes.chroot/usr/src
 
 # clone the sugar modules
 
-for x in sugar{-datastore,-artwork,-toolkit,-toolkit-gtk3,}; do
+for x in sugar{-datastore,-artwork,-toolkit-gtk3,} gwebsockets; do
     P=config/includes.chroot/usr/src/$x
     if [ ! -e $P ]; then
-	git clone https://github.com/sugarlabs/$x $P
+	git clone --depth 2 https://github.com/sugarlabs/$x $P
     fi
 done
 
@@ -18,30 +21,31 @@ mkdir -p config/includes.chroot/usr/src/sugar-activities
 function clone {
     P=config/includes.chroot/usr/src/sugar-activities/$2
     if [ ! -e $P ]; then
-	git clone $1 $P
+	git clone --depth 2 $1 $P
     fi
 }
 
 # clone demonstration activities, the fructose set
 
-clone https://github.com/sugarlabs/browse-activity.git     Browse.activity
-clone https://github.com/sugarlabs/sugarlabs-calculate.git Calculate.activity
-clone https://github.com/sugarlabs/chat.git                Chat.activity
-clone https://github.com/sugarlabs/imageviewer-activity    ImageViewer.activity
-clone https://github.com/sugarlabs/jukebox-activity.git    Jukebox.activity
-clone https://github.com/sugarlabs/log-activity            Log.activity
-clone https://github.com/sugarlabs/Pippy                   Pippy.activity
-clone https://github.com/sugarlabs/read-activity           Read.activity
-clone https://github.com/sugarlabs/terminal-activity       Terminal.activity
-clone https://github.com/sugarlabs/turtleart-activity.git  TurtleBlocks.activity
-clone https://github.com/sugarlabs/write-activity          Write.activity
+clone https://github.com/sugarlabs/browse-activity      Browse.activity
+clone https://github.com/sugarlabs/sugarlabs-calculate  Calculate.activity
+clone https://github.com/sugarlabs/chat                 Chat.activity
+clone https://github.com/sugarlabs/imageviewer-activity ImageViewer.activity
+clone https://github.com/sugarlabs/jukebox-activity     Jukebox.activity
+clone https://github.com/sugarlabs/log-activity         Log.activity
+clone https://github.com/sugarlabs/Pippy                Pippy.activity
+clone https://github.com/sugarlabs/read-activity        Read.activity
+clone https://github.com/sugarlabs/terminal-activity    Terminal.activity
+clone https://github.com/sugarlabs/turtleart-activity   TurtleBlocks.activity
+clone https://github.com/sugarlabs/write-activity       Write.activity
 
 # clone custom activities
 
 #clone https://github.com/my/repository.git My.activity
 
 # install live-build if not present
-[ ! -e /usr/bin/lb ] && sudo apt install -y live-build
+[ ! -e /usr/bin/lb ] && apt install -y live-build
 
 # run live-build
-sudo lb build
+lb config -d buster
+lb build
