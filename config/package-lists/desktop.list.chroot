@@ -38,7 +38,16 @@ linux-libc-dev
 python-setuptools
 python3-setuptools
 
-# runtime dependencies - new since port to python 3
+# runtime dependencies - python 2 and gtk 3
+python-six
+python-decorator
+python-dbus
+python-cairo
+python-dateutil
+python-gi-cairo
+python-pygame
+
+# runtime dependencies - python 3 and gtk 3
 python3-six
 python3-decorator
 python3-dbus
@@ -47,6 +56,7 @@ gir1.2-telepathyglib-0.12
 python3-xapian
 python3-dateutil
 python3-gi-cairo
+python3-pygame
 
 # runtime dependencies - by sucrose package and dependencies
 gir1.2-gstreamer-1.0
@@ -55,7 +65,6 @@ gir1.2-soup-2.4
 gir1.2-gtksource-3.0
 gir1.2-webkit2-4.0
 gir1.2-xkl-1.0
-metacity
 gir1.2-upowerglib-1.0
 gir1.2-vte-2.91
 gir1.2-evince-3.0
@@ -63,7 +72,6 @@ gir1.2-gst-plugins-base-1.0
 gir1.2-nm-1.0
 gir1.2-abi-3.0
 gir1.2-gudev-1.0
-python3-pygame
 network-manager
 modemmanager
 avahi-autoipd
@@ -78,6 +86,7 @@ xdg-user-dirs
 fonts-dejavu-core
 mobile-broadband-provider-info
 policykit-1
+metacity
 
 # fixes no login stack trace during startup
 telepathy-mission-control-5
@@ -102,5 +111,3 @@ gstreamer1.0-plugins-good
 
 # fixes bundle install via browse
 unzip
-
-
