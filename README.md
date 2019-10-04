@@ -19,7 +19,7 @@ For a pre-built ISO-9660 file see
 
 ## How to rebuild
 
-1. Install Debian Stretch;
+1. Install Debian 10 Buster;
 
 2. Clone this repository;
 ```bash
