@@ -47,5 +47,5 @@ clone https://github.com/sugarlabs/write-activity       Write.activity
 [ ! -e /usr/bin/lb ] && apt install -y live-build
 
 # run live-build
-lb config -d buster
+lb config -d buster --debian-installer live
 lb build
