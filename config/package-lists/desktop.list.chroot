@@ -2,7 +2,9 @@
 xserver-xorg
 lightdm
 
+# build script dependencies
 git
+rsync
 
 # sugar-artwork build dependencies
 libgtk2.0-dev
