@@ -55,3 +55,50 @@ Then rebuild.
 Debian Live Build has
 [documentation](https://live-team.pages.debian.net/live-manual/html/live-manual/index.en.html)
 for more details.
+
+## Caching
+
+A cache of packages is maintained by *Live Build*, so that repeated builds will avoid downloading what has already been downloaded.  The cache is about 1.4 GB after our build of Debian Buster.
+
+However, the cache is distribution version specific.  For development of multiple distribution versions, you may use an instance of the *approx* package.  This may be on a different system, or the same system as *Live Build*.
+
+This is optional.
+
+How to set up *Live Build* and *approx* together:
+
+* install the *approx* package:
+
+~~~
+		sudo apt install approx
+~~~
+
+* edit the *approx* configuration file:
+
+~~~
+		sudo editor /etc/approx/approx.conf
+~~~
+
+* add entries for Debian:
+
+~~~
+		debian          http://ftp.debian.org/debian
+		security        http://security.debian.org/
+~~~
+
+* edit your `build` file to switch to using approx,
+
+~~~
+		lb config \
+		    --mirror-bootstrap http://approx:9999/debian \
+		    --mirror-chroot-security http://approx:9999/security \
+~~~
+
+* clear the *Live Build* disk cache,
+
+~~~
+		sudo rm -rf cache
+~~~
+
+* run *Live Build* again.
+
+---
