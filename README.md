@@ -15,7 +15,7 @@ clones in `/usr/src`), and binaries (`make install`) for Sugar modules
 and the demonstration activity set.
 
 For a pre-built ISO-9660 file see
-[Downloads](http://people.sugarlabs.org/~quozl/sugar-live-build-20171009/).
+[Downloads](http://people.sugarlabs.org/~quozl/sugar-live-build-20191014/).
 
 ## How to rebuild
 
