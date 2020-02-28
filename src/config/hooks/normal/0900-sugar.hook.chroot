@@ -19,7 +19,7 @@ cd /usr/src/sugar-toolkit-gtk3 && (
     make install
     rsync -r /usr/lib/python3.7/site-packages/sugar3 /usr/lib/python3.7/dist-packages/
     git clean -dfx
-    ./autogen.sh --prefix /usr
+    ./autogen.sh --prefix /usr --with-python2
     make
     make install
     echo ok
