@@ -19,6 +19,8 @@ For a pre-built ISO-9660 file see
 
 ## How to rebuild
 
+Rebuilding Sugar Live Build is not necessary if you just want to use it.  You only need to rebuild if you plan to release a new image for others.
+
 1. Install Debian 10 Buster;
 
 2. Clone this repository;
