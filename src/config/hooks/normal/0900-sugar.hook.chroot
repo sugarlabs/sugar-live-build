@@ -40,6 +40,7 @@ cd /usr/src/sugar && (
     make
     make install
     mv /usr/lib/python3.7/site-packages/jarabe /usr/lib/python3.7/dist-packages/
+    cp /usr/lib/python3.7/dist-packages/jarabe /usr/lib/python2.7/dist-packages/
     echo ok
 ) > /usr/src/install-sugar.log 2>&1
 
