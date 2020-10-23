@@ -23,14 +23,33 @@ Rebuilding Sugar Live Build is not necessary if you just want to use it.  You on
 
 1. Install Debian 10 Buster;
 
+2. Install the live-build package
+```bash
+sudo apt-get install live-build
+```
+
 2. Clone this repository;
 ```bash
 git clone https://github.com/sugarlabs/sugar-live-build.git
+cd sugar-live-build
 ```
 
-3. Run the `build` script.
+3. (optional) Work around a bug in metacity-1.30 which causes the Journal
+to open on startup, obscuring the Activities page
+(or you can press F3 when it does this)
+
 ```bash
-./build
+src=https://snapshot.debian.org/archive/debian/20190910T220103Z/pool/main/m/metacity
+dir=src/config/packages.chroot
+wget -P $dir \
+    $src/metacity_3.34.0-1_i386.deb \
+    $src/metacity-common_3.34.0-1_all.deb \
+    $src/libmetacity1_3.34.0-1_i386.deb
+```
+
+4. Run the `build` script.
+```bash
+sudo ./build
 ```
 
 When this is finished, look for a new file ending with `.hybrid.iso`,
