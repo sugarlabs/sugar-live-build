@@ -1,4 +1,5 @@
 /.build/
+/.lock
 /binary/
 /build.log
 /cache.sugar/
@@ -8,10 +9,6 @@
 /chroot.packages.live
 /chroot/
 /config/
-/live-image-i386.contents
-/live-image-i386.files
-/live-image-i386.hybrid.iso
-/live-image-i386.hybrid.iso.zsync
-/live-image-i386.packages
+/live-image-*
 /packages.chroot/
 /src/config/packages.chroot/
