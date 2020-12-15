@@ -11,6 +11,15 @@ rm -rvf config chroot
 # clean build system
 lb clean --all
 
+# Work round a metacity bug that makes the Journal open full screen
+# obscuring the Home page.
+src=https://snapshot.debian.org/archive/debian/20190910T220103Z/pool/main/m/metacity
+dir=src/config/packages.chroot
+wget -c -P $dir \
+    $src/metacity_3.34.0-1_i386.deb \
+    $src/libmetacity1_3.34.0-1_i386.deb \
+    $src/metacity-common_3.34.0-1_all.deb
+
 # begin configuration
 lb config
 

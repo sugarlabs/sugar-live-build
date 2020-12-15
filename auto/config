@@ -47,6 +47,7 @@ clone https://github.com/sugarlabs/memorize-activity Memorize.activity
 # live build configuration step
 lb config noauto \
    --distribution buster \
+   --architectures i386 \
    --debian-installer live
 	"${@}"
 
