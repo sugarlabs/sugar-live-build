@@ -32,13 +32,13 @@ git clone https://github.com/sugarlabs/sugar-live-build.git
 to open raised on startup, obscuring the Home View
 (or you can press F3 when it does this)
 ```bash
-src=https://snapshot.debian.org/archive/debian/20190910T220103Z/pool/main/m/metacity
+src=http://dev.laptop.org/~quozl/metacity-3.38-backport-debian-buster/
 dir=src/config/packages.chroot
 arch=$(dpkg --print-architecture)
 wget -P $dir \
-    $src/metacity_3.34.0-1_$arch.deb \
-    $src/libmetacity1_3.34.0-1_$arch.deb \
-    $src/metacity-common_3.34.0-1_all.deb
+    $src/metacity_3.38.0-2_$arch.deb \
+    $src/libmetacity3_3.38.0-2_$arch.deb \
+    $src/metacity-common_3.38.0-2_all.deb
 ```
 
 4. Run the `build` script.
