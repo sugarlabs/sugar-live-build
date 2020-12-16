@@ -28,7 +28,7 @@ Rebuilding Sugar Live Build is not necessary if you just want to use it.  You on
 git clone https://github.com/sugarlabs/sugar-live-build.git
 ```
 
-2.5. (optional) Work around a bug in Metacity 3.30 which causes the Journal
+3. (optional) Work around a bug in Metacity 3.30 which causes the Journal
 to open raised on startup, obscuring the Home View
 (or you can press F3 when it does this)
 ```bash
@@ -41,7 +41,7 @@ wget -P $dir \
     $src/metacity-common_3.34.0-1_all.deb
 ```
 
-3. Run the `build` script.
+4. Run the `build` script.
 ```bash
 ./build
 ```
