@@ -1,0 +1,9 @@
+#!/bin/bash
+# Written by Martin Guy <martinwguy@sugarlabs.org>
+# Public Domain
+
+# See https://github.com/sugarlabs/sugar-live-build/issues/20
+
+set -e
+
+rm /usr/lib/*-linux-gnu/dri/nouveau_dri.so
