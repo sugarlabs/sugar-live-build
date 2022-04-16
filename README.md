@@ -1,7 +1,7 @@
 # Sugar Live Build
 ## Introduction
 
-Sugar Live Build is a complete bootable image containing Debian Linux,
+Sugar Live Build is a complete bootable image containing Debian,
 Sugar, the Sugar toolkits, and the demonstration activities.
 
 - it can be booted from hard drive, flash drive, and optical media,
@@ -16,6 +16,31 @@ and the demonstration activity set.
 
 For a pre-built ISO-9660 file see
 [Downloads](http://people.sugarlabs.org/~quozl/sugar-live-build/).
+
+## How to install
+
+Sugar Live Build can be booted and operate as-is.  Sometimes it is
+installed on disk for persistence, password protection, and for use as
+a development target system.
+
+Boot from the ISO file, and as soon as the system shows
+the boot menu, be sure to select "Install".
+
+This will start installation of Debian.
+
+You will be asked a series of questions, such as language, location,
+and keyboard.  Additional components will be loaded.  Then further
+questions; host name, domain name, new root password, new user
+account, and clock time zone.
+
+There are other questions, but these are normal Debian questions, so
+the best way to answer them is to understand the question by reading
+the Debian documentation.
+
+Eventually the system will be installed.
+
+When the system is rebooted, log in with the new user account, and
+Sugar will be started.
 
 ## How to rebuild
 
